@@ -31,10 +31,10 @@ jobs:
             8
             17
 
-      - uses: android-actions/setup-android@v3
-
       - name: SDK packages
         run: |
+          export JAVA_HOME="$JAVA_HOME_17_X64"
+          export PATH="$JAVA_HOME/bin:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
           yes | sdkmanager --licenses > /dev/null || true
           sdkmanager "platforms;android-27" "platforms;android-28" "build-tools;27.0.3" "build-tools;28.0.3" "platform-tools"
           java -version
