@@ -12,6 +12,10 @@ mkdir -p "$ROOT/out"
 cd "$ROOT/tasks/$T" || exit 0
 chmod +x gradlew
 adb logcat -c
+adb shell input keyevent 82
+adb shell "screenrecord --size 540x960 --time-limit 170 /sdcard/demo.mp4" &
+REC=$!
+sleep 3
 if [ "$T" = "317613_logcat" ]; then
   ./gradlew --no-daemon installDebug
   adb shell am start -n com.example.company.myapplication/.MainActivity
@@ -19,6 +23,11 @@ if [ "$T" = "317613_logcat" ]; then
 else
   ./gradlew --no-daemon connectedDebugAndroidTest 2>&1 | tee "$ROOT/out/$T.gradle.txt"
 fi
+sleep 4
+adb shell pkill -2 screenrecord
+sleep 3
+adb pull /sdcard/demo.mp4 "$ROOT/out/$T.mp4"
+cp app/build/outputs/apk/debug/*.apk "$ROOT/out/$T.apk" 2>/dev/null
 for f in app/build/outputs/androidTest-results/connected/*.xml; do [ -f "$f" ] && python3 -c "
 import sys,re
 s=open(sys.argv[1]).read()

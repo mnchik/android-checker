@@ -12,18 +12,45 @@ jobs:
       fail-fast: false
       matrix:
         task:
+          - 317613_logcat
+          - 323266_hello_button
+          - 323267_textview_edittext_button
+          - 323269_calculator
+          - 323270_count_ontextchanged
+          - 323271_simple_button
           - 323272_edittext_to_textview
-          - 590197_lifecycle
-          - 590320_grid_click
-          - 590760_spinner_dynamic
-          - 736672_perm_camera_button
-          - 736666_perm_camera_simple
+          - 323273_count_clicks
+          - 323274_autochange
+          - 377262_prime
+          - 377263_earth_ellipsoid
+          - 377263_earth_sphere
+          - 397138_converter
           - 399885_radix
+          - 399886_tictac_0based
+          - 399886_tictac_1based
           - 402812_text_editor
+          - 572995_file_read
+          - 572997_file_swap
+          - 589887_list_click
+          - 589962_transition_simple
+          - 590197_lifecycle
+          - 590278_transition_cycle
+          - 590281_transition_data
+          - 590315_list_add
+          - 590316_list_remove
+          - 590317_list_seekbar
+          - 590319_grid_simple
+          - 590320_grid_click
+          - 590736_grid_remove
+          - 590760_spinner_dynamic
           - 713651_perm_normal_simple
+          - 713662_perm_internet
           - 713668_notif_simple
           - 713680_notif_data
           - 713681_notif_click
+          - 736605_file_count
+          - 736666_perm_camera_simple
+          - 736672_perm_camera_button
     steps:
       - uses: actions/checkout@v4
 
