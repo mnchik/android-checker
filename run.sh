@@ -15,7 +15,7 @@ if [ "$T" = "317613_logcat" ]; then
   adb shell am start -n com.example.company.myapplication/.MainActivity
   sleep 8
 else
-  ./gradlew --no-daemon connectedDebugAndroidTest
+  ./gradlew --no-daemon connectedDebugAndroidTest 2>&1 | tee "$ROOT/out/$T.gradle.txt"
 fi
 adb logcat -d -v time -s CHECKER:* > "$ROOT/out/$T.txt"
 adb logcat -d -v time > "$ROOT/out/$T.full.txt"

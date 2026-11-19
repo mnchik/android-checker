@@ -65,6 +65,15 @@ jobs:
             echo "no CHECKER output" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Show test report
+        if: always()
+        run: |
+          f="out/${{ matrix.task }}.gradle.txt"
+          if [ -f "$f" ]; then
+            msg=$(grep -E "FAILED|Tests |tests completed|Exception|expected|Error|BUILD" "$f" | head -30 | sed 's/%/%25/g' | awk '{printf "%s%%0A",$0}')
+            echo "::notice title=GRADLE ${{ matrix.task }}::$msg"
+          fi
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
