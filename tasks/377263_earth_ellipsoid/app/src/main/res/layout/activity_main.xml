@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Какой формы Земля?" />
+    <RadioGroup
+        android:id="@+id/rgAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbDisk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Диск" />
+        <RadioButton
+            android:id="@+id/rbSphere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Шар" />
+        <RadioButton
+            android:id="@+id/rbEllipsoid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Эллипсоид" />
+        <RadioButton
+            android:id="@+id/rbCube"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Куб" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/butAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ответить" />
+    <TextView
+        android:id="@+id/tvAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+</LinearLayout>
