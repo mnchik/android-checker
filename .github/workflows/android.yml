@@ -68,6 +68,12 @@ jobs:
             echo "no CHECKER output" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Show failures
+        if: always()
+        run: |
+          f="out/${{ matrix.task }}.fail.txt"
+          if [ -f "$f" ]; then msg=$(cut -c1-300 "$f" | head -8 | sed 's/%/%25/g' | awk '{printf "%s%%0A",$0}'); echo "::notice title=FAIL ${{ matrix.task }}::$msg"; fi
+
       - name: Show test report
         if: always()
         run: |
