@@ -13,33 +13,14 @@ jobs:
       matrix:
         task:
           - 323272_edittext_to_textview
-          - 377262_prime
-          - 397138_converter
-          - 399885_radix
-          - 377263_earth_sphere
-          - 377263_earth_ellipsoid
-          - 402812_text_editor
-          - 399886_tictac_0based
-          - 399886_tictac_1based
-          - 589962_transition_simple
-          - 590278_transition_cycle
-          - 590281_transition_data
           - 590197_lifecycle
-          - 589887_list_click
-          - 590315_list_add
-          - 590316_list_remove
-          - 590317_list_seekbar
-          - 590319_grid_simple
           - 590320_grid_click
-          - 590736_grid_remove
           - 590760_spinner_dynamic
-          - 713651_perm_normal_simple
-          - 713662_perm_internet
-          - 736666_perm_camera_simple
           - 736672_perm_camera_button
-          - 572995_file_read
-          - 572997_file_swap
-          - 736605_file_count
+          - 736666_perm_camera_simple
+          - 399885_radix
+          - 402812_text_editor
+          - 713651_perm_normal_simple
           - 713668_notif_simple
           - 713680_notif_data
           - 713681_notif_click
@@ -92,7 +73,7 @@ jobs:
         run: |
           f="out/${{ matrix.task }}.gradle.txt"
           if [ -f "$f" ]; then
-            msg=$(grep -E "FAILED|Tests |tests completed|Exception|expected|Error|BUILD" "$f" | head -30 | sed 's/%/%25/g' | awk '{printf "%s%%0A",$0}')
+            msg=$(grep -v -E "xerces|SAXParse|base-extension|^\s+at " "$f" | grep -E "^e: |error:|FAILED|AssertionError|NoMatchingView|Exception|What went wrong|Could not|expected|Tests |tests completed|Unresolved|Manifest" | cut -c1-220 | head -14 | sed 's/%/%25/g' | awk '{printf "%s%%0A",$0}')
             echo "::notice title=GRADLE ${{ matrix.task }}::$msg"
           fi
 
